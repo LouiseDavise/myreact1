@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import InputForm from './component/InputForm'
+import Root from './component/Root'
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { initFirebase } from './api'
+import AuthContextProvider from './component/Context';
 
+// Initialize Firebase
+initFirebase();
+
+// To Access AuthContext, the component must be the child of the AuthContextProvider
 ReactDOM.render(
 	<React.StrictMode>
-		<InputForm />			
+		<Router>
+            <AuthContextProvider>
+			    <Root />
+            </AuthContextProvider>
+		</Router>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
